@@ -1,4 +1,4 @@
-package level02.task02;
+package level02;
 
 import java.util.Locale;
 
