@@ -1,6 +1,6 @@
 package level09;
 
-public class task0804 {
+public class task0904 {
 	public static char first = '\u004A';
 	public static char second = 'a';
 	public static char third = '\u0076';

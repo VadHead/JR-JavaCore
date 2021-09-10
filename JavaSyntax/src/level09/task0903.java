@@ -1,6 +1,6 @@
 package level09;
 
-public class task0803 {
+public class task0903 {
 	public String text = "Всегда пишите код так, "
 			+ "будто сопровождать его будет "
 			+ "склонный к насилию психопат, "

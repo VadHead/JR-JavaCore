@@ -1,6 +1,6 @@
 package level09;
 
-public class task0802 {
+public class task0902 {
 	public double a = 0.;
 	public double b = .0;
 	public double c = 100D;

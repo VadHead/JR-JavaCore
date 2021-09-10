@@ -1,6 +1,6 @@
 package level09;
 
-public class task0801 {
+public class task0901 {
 	public byte b = -128;
 	public short s = -32768;
 	public int i = 1_234_567_890;
