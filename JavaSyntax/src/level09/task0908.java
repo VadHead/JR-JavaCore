@@ -11,17 +11,18 @@ public class task0908 {
 	}
 	
 	public static String toHex(String binaryNumber) {
-		String hex = "";
-		if (binaryNumber == null || binaryNumber.isEmpty() || Integer.parseInt(binaryNumber) != 0 || Integer.parseInt(binaryNumber) != 1) return hex;
-		return hex;
+		StringBuilder sb = new StringBuilder(binaryNumber);
+		if (sb.length() < 4){
+			for (int i = sb.length(); i < 4; i++) {
+				sb.append("0");
+			}
+			sb = sb.reverse();
+		}
+		return null;
 	}
 	
 	public static String toBinary(String hexNumber) {
-		String binary = "";
-//		for (int i = 0; i < hexNumber.length() ; i++) {
-//			char symbol = hexNumber.charAt();
-//			if (symbol < 0  )
-//		}
-		return binary;
+		
+		return null;
 	}
 }
