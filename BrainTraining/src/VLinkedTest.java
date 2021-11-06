@@ -9,12 +9,13 @@ public class VLinkedTest {
 		vlist.add("third");
 		vlist.add("fourth");
 		
-		vlist.add(5, "test");
-		
-		System.out.println(vlist.get(0));
-		System.out.println(vlist.get(1));
-		System.out.println(vlist.get(2));
+//		vlist.add(89, "test");
+		vlist.remove(3);
+//		System.out.println(vlist.get(0));
+//		System.out.println(vlist.get(1));
+//		System.out.println(vlist.get(3));
 //		System.out.println(vlist.get(-9));
 		System.out.println(vlist);
+		System.out.println(VLinkedList.getSize());
 	}
 }
