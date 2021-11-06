@@ -1,12 +1,12 @@
 package LinkedListExmpl;
 
-public class Entity {
+public class Unit {
 	
 	private String value;
-	private Entity prev;
-	private Entity next;
+	private Unit prev;
+	private Unit next;
 	
-	public Entity(String value) {
+	public Unit(String value) {
 		this.value = value;
 	}
 	
@@ -18,19 +18,19 @@ public class Entity {
 		this.value = value;
 	}
 	
-	public Entity getPrev() {
+	public Unit getPrev() {
 		return prev;
 	}
 	
-	public void setPrev(Entity prev) {
+	public void setPrev(Unit prev) {
 		this.prev = prev;
 	}
 	
-	public Entity getNext() {
+	public Unit getNext() {
 		return next;
 	}
 	
-	public void setNext(Entity next) {
+	public void setNext(Unit next) {
 		this.next = next;
 	}
 	

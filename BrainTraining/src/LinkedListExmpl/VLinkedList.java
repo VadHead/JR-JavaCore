@@ -1,27 +1,58 @@
 package LinkedListExmpl;
 
-import java.util.NoSuchElementException;
-
 public class VLinkedList {
 	
-	private Entity first;
-	private Entity last;
+	private Unit first;
+	private Unit last;
 	
 	public void add(String value) {
-		Entity entity = new Entity(value);
+		Unit unit = new Unit(value);
 		if (first == null) {
-			first = entity;
+			first = unit;
 		}
 		else if (last == null) {
-			last = entity;
+			last = unit;
 			last.setPrev(first);
 			first.setNext(last);
 		}
 		else {
-			last.setNext(entity);
-			entity.setPrev(last);
-			last = entity;
+			last.setNext(unit);
+			unit.setPrev(last);
+			last = unit;
 		}
+	}
+	
+	public void add(int index, String value) {
+		Unit unit = new Unit(value);
+		if (first == null && index >= 0) {
+			this.add(value);
+		}
+		else if (index == 0) {
+			unit.setNext(first);
+			first.setPrev(unit);
+			first = unit;
+		}
+		else {
+			Unit prev = first;
+			Unit next = first.getNext();
+			for (int i = 1; i < index; i++) {
+				prev = prev.getNext();
+				next = next.getNext();
+			}
+			if (next == null) {
+				add(value);
+			}
+			else if (prev.getNext() == next) {
+				prev.setNext(unit);
+				unit.setPrev(prev);
+				unit.setNext(next);
+				next.setPrev(unit);
+			}
+			else {
+				System.out.println("Houston! We have a problem!");
+			}
+		}
+		
 	}
 	
 	public String get(int index) {
@@ -29,14 +60,14 @@ public class VLinkedList {
 			throw new ArrayIndexOutOfBoundsException();
 		}
 		String result = "";
-		Entity entity = first;
+		Unit unit = first;
 		for (int i = 0; i <= index; i++) {
 			try{
-				result = entity.getValue();
+				result = unit.getValue();
 			}catch (NullPointerException e){
 				throw new ArrayIndexOutOfBoundsException();
 			}
-			entity = entity.getNext();
+			unit = unit.getNext();
 		}
 		return result;
 	}
@@ -44,10 +75,10 @@ public class VLinkedList {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		Entity entity = first;
-		while (entity != null){
-			sb.append(entity.getValue()).append(" | ");
-			entity = entity.getNext();
+		Unit unit = first;
+		while (unit != null){
+			sb.append(unit.getValue()).append(" | ");
+			unit = unit.getNext();
 		}
 		return "| " + sb;
 	}
