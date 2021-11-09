@@ -1,8 +1,13 @@
 package level13.task1314;
 
 public class StringsLinkedList {
-	private Node first = new Node();
-	private Node last = new Node();
+	private Node first;
+	private Node last;
+	
+//	public StringsLinkedList(Node first, Node last) {
+//		this.first = first;
+//		this.last = last;
+//	}
 	
 	public void add(String value) {
 		if (first.next == null) {

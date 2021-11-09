@@ -11,8 +11,6 @@ public class VLinkedList {
 	
 	private static int size = 0;
 	
-	
-	
 	public void add(String value) {
 		Unit unit = new Unit(value);
 		if (first == null) {
@@ -61,7 +59,6 @@ public class VLinkedList {
 			size++;
 		}
 	}
-	
 	public String get(int index) {
 		if (index < 0 || index >= size) {
 			throw new ArrayIndexOutOfBoundsException();

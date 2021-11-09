@@ -1,4 +1,9 @@
-import LinkedListExmpl.VLinkedList;
+package LinkedListExmpl;
+
+import LinkedListExmpl.*;
+
+import java.util.LinkedList;
+import java.util.List;
 
 public class VLinkedTest {
 	
