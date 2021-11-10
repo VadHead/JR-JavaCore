@@ -35,14 +35,14 @@ public class LinkedListV2 {
 	public Element get(String value) {
 		if (firstExist()) {
 			Element element = first;
-			while (element.getNext() != null) {
+			while (element != null) {
 				if (element.getValue().equals(value)) {
 					return element;
 				}
 				element = element.getNext();
 			}
 		}
-		throw new NoSuchElementException();
+		return new Element(null);
 	}
 	
 	public Element getFirst() {
@@ -65,22 +65,44 @@ public class LinkedListV2 {
 		}
 	}
 	
-	public boolean isExist(String value){
-		if (!firstExist()) {
-			return false;
-		}
-		else {
-			boolean isExist = false;
+	public void set(String currentElement, String newElement) {
+		if (firstExist()) {
+			/*Element element = first;
+		while (element != null) {
+			if (element.getValue().equals(currentElement)) {
+				element.setValue(newElement);
+				return;
+			}
+			element = element.getNext();
+		}*/
 			Element element = first;
+			do {
+				if (element.getValue().equals(currentElement)) {
+					element.setValue(newElement);
+					return;
+				}
+			} while ((element = element.getNext()) != null);
+		}
+	}
+	
+	public boolean isExist(String value) {
+		if (firstExist()) {
+			/*Element element = first;
 			while (element.getNext() != null) {
 				if (element.getValue().equals(value)) {
-					isExist = true;
-					break;
+					return true;
 				}
 				element = element.getNext();
-			}
-			return isExist;
+			}*/
+			Element element = first;
+			do {
+				if (element.getValue().equals(value)) {
+					return true;
+				}
+			} while ((element = element.getNext()) != null);
+			
 		}
+		return false;
 	}
 	
 	public void remove(String value) {
