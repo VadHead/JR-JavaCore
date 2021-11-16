@@ -1,4 +1,4 @@
-package level07.task1710;
+package level07.task1711;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Locale;
 
 public class Solution {
-	public static List<Person> allPeople = new ArrayList<Person>();
+	
+	public static volatile List<Person> allPeople = new ArrayList<Person>();
 	
 	static {
 		allPeople.add(Person.createMale("Иванов Иван", new Date()));  //сегодня родился    id=0
@@ -22,19 +23,35 @@ public class Solution {
 		}
 		switch (args[0]) {
 			case "-c":
-				createPerson(args[1], args[2], args[3]);
+				synchronized (allPeople) {
+					for (int i = 1; i < args.length; i += 3) {
+						createPerson(args[i], args[i + 1], args[i + 2]);
+					}
+				}
 				break;
-			case "-r":
-				personInfo(Integer.parseInt(args[1]));
+			case "-i":
+				synchronized (allPeople) {
+					for (int i = 1; i < args.length; i++) {
+						personInfo(Integer.parseInt(args[i]));
+					}
+				}
 				break;
 			case "-u":
-				updatePerson(Integer.parseInt(args[1]), args[2], args[3], args[4]);
+				synchronized (allPeople) {
+					for (int i = 1; i < args.length; i += 4) {
+						updatePerson(Integer.parseInt(args[i]), args[i + 1], args[i + 2], args[i + 3]);
+					}
+				}
 				break;
 			case "-d":
-				deletePerson(Integer.parseInt(args[1]));
+				synchronized (allPeople) {
+					for (int i = 1; i < args.length; i++) {
+						deletePerson(Integer.parseInt(args[i]));
+					}
+				}
 				break;
 		}
-		//allPeople.forEach(s -> System.out.printf("%s %s %s\n", s.getName(), s.getSex(), s.getBirthDate()));
+		//allPeople.forEach(s -> System.out.printf("%s %s %s", s.getName(), s.getSex(), s.getBirthDate()));
 		
 	}
 	
@@ -72,7 +89,8 @@ public class Solution {
 			sex = "ж";
 		}
 		
-		System.out.printf("%s %s %s\n", person.getName(), sex, formattedDate);
+		System.out.printf("%s %s %s", person.getName(), sex, formattedDate);
+		System.out.println();
 	}
 	
 	public static void updatePerson(int id, String name, String sex, String birthday) {
@@ -99,4 +117,5 @@ public class Solution {
 		person.setName(null);
 		person.setBirthDate(null);
 	}
+	
 }

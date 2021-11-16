@@ -1,140 +1,200 @@
 package LinkedListV2;
 
-import LinkedListExmpl.Unit;
-
 import java.util.NoSuchElementException;
 
-public class LinkedListV2 {
-	private Element first;
+public class LinkedListV2<T> {
 	
-	private boolean firstExist(){
-		return first != null;
-	}
+	private Element<T> first;
 	
-	public void addFirst(String value) {
-		Element element = new Element(value);
-		element.setNext(first);
+	public void addFirst(T value) {
+		Element<T> element = new Element<>(value);
+		element.next = first;
 		first = element;
 	}
 	
-	public void addLast(String value) {
-		if (!firstExist()) {
+	private Element<T> getElement(int index) {
+		if (index < 0) {
+			return null;
+		}
+		int count = 0;
+		Element<T> element = first;
+		while (count < index) {
+			if (element == null) {
+				return null;
+			}
+			count++;
+			if (element.getNext() == null) {
+				return null;
+			}
+			element = element.getNext();
+		}
+		return element;
+	}
+	
+	public void addLast(T value) {
+		if (first == null) {
 			addFirst(value);
 		}
 		else {
-			Element element = first;
+			Element<T> element = first;
 			while (element.getNext() != null) {
 				element = element.getNext();
 			}
-			Element lastElement = new Element(value);
-			element.setNext(lastElement);
+			element.next = new Element<>(value);
 			
 		}
 	}
 	
-	public Element get(String value) {
-		if (firstExist()) {
-			Element element = first;
-			while (element != null) {
-				if (element.getValue().equals(value)) {
-					return element;
-				}
-				element = element.getNext();
+	public int firstIndexOf(T value) {
+		Element<T> element = first;
+		int index = 0;
+		while (element != null) {
+			if (element.value.equals(value)) {
+				return index;
 			}
+			index++;
+			element = element.getNext();
 		}
-		return new Element(null);
+		return -1;
 	}
 	
-	public Element getFirst() {
-		if (firstExist()) {
-			return first;
+	public int lastIndexOf(T value) {
+		Element<T> element = first;
+		int index = -1;
+		int count = 0;
+		while (element != null) {
+			if (element.value.equals(value)) {
+				index = count;
+			}
+			count++;
+			element = element.getNext();
+		}
+		return index;
+	}
+	
+	public T getFirst() {
+		if (first != null && first.value != null) {
+			return first.value;
 		}
 		return null;
 	}
 	
-	public Element getLast() {
-		if (!firstExist()) {
+	public T getLast() {
+		if (first == null) {
 			return null;
 		}
-		else {
-			Element element = first;
-			while (element.getNext() != null) {
-				element = element.getNext();
-			}
-			return element;
-		}
-	}
-	
-	public void set(String currentElement, String newElement) {
-		if (firstExist()) {
-			/*Element element = first;
-		while (element != null) {
-			if (element.getValue().equals(currentElement)) {
-				element.setValue(newElement);
-				return;
-			}
+		Element<T> element = first;
+		while (element.getNext() != null) {
 			element = element.getNext();
-		}*/
-			Element element = first;
-			do {
-				if (element.getValue().equals(currentElement)) {
-					element.setValue(newElement);
-					return;
-				}
-			} while ((element = element.getNext()) != null);
 		}
+		return element.getValue();
 	}
 	
-	public boolean isExist(String value) {
-		if (firstExist()) {
-			/*Element element = first;
-			while (element.getNext() != null) {
-				if (element.getValue().equals(value)) {
-					return true;
-				}
-				element = element.getNext();
-			}*/
-			Element element = first;
-			do {
-				if (element.getValue().equals(value)) {
-					return true;
-				}
-			} while ((element = element.getNext()) != null);
-			
-		}
-		return false;
-	}
-	
-	public void remove(String value) {
-		if (!firstExist()) {
-			return;
-		} if (first.getValue().equals(value)) {
-			first = first.getNext();
+	public T getValueOf(int index) {
+		Element<T> element = this.getElement(index);
+		if (element != null) {
+			return element.getValue();
 		}
 		else {
-			Element element = first;
-			while (element.getNext() != null) {
-				Element nextElement = element.getNext();
-				if (nextElement.getValue().equals(value)) {
-					element.setNext(nextElement.getNext());
-					return;
-				}
+			return null;
+		}
+	}
+	
+	public boolean set(int index, T newValue) {
+		Element<T> element = this.getElement(index);
+		if (element != null) {
+			element.value = newValue;
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean remove(int index) {
+		Element<T> element = this.getElement(index - 1);
+		if (element != null) {
+			if (element.getNext() != null) {
+				element.next = element.getNext().getNext();
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		else {
+			first = first.getNext();
+			return true;
+		}
+	}
+	
+	public boolean removeFirst() {
+		if (first != null) {
+			first = first.getNext();
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean removeLast() {
+		if (first == null) {
+			return false;
+		}
+		Element<T> element = first;
+		Element<T> next = null;
+		while (element.getNext() != null) {
+			next = element.getNext();
+			if (next.getNext() == null) {
+				element.next = null;
+				return true;
+			}
+			else {
 				element = element.getNext();
 			}
-			
 		}
+		return this.removeFirst();
+	}
+	
+	public boolean removeFirstOf(T value) {
+		int index = this.firstIndexOf(value);
+		return this.remove(index);
+	}
+	
+	public boolean removeLastOf(T value) {
+		int index = this.lastIndexOf(value);
+		return this.remove(index);
 	}
 	
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		Element element = first;
+		Element<T> element = first;
 		while (element != null) {
-			sb.append(element.getValue()).append(" | ");
-			//sb.append(element.getValue()).append(" > ").append(element.getNext()).append(" | ");
-			element = element.getNext();
+			sb.append(" | ").append(element.value);
+			element = element.next;
 		}
-		return "Linked Elements: [ " + sb.replace(sb.lastIndexOf("|"), sb.lastIndexOf("|") + 1, "]");
+		return "Linked Elements:" + sb + " |";
+	}
+	
+	private static class Element<T> {
+		
+		private T value;
+		private Element<T> next;
+		
+		private Element(T value) {
+			this.value = value;
+		}
+		
+		public T getValue() {
+			return value == null ? null : value;
+		}
+		
+		public Element<T> getNext() {
+			return next == null ? null : next;
+		}
+		
 	}
 	
 }
