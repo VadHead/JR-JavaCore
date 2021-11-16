@@ -1,7 +1,5 @@
 package LinkedListV2;
 
-import java.util.NoSuchElementException;
-
 public class LinkedListV2<T> {
 	
 	private Element<T> first;
@@ -54,10 +52,10 @@ public class LinkedListV2<T> {
 	}
 	
 	public T getFirst() {
-		if (first != null && first.getValue() != null) {
-			return first.getValue();
+		if (first == null) {
+			return null;
 		}
-		return null;
+		return first.getValue();
 	}
 	
 	public T getLast() {
