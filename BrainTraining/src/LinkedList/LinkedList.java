@@ -1,6 +1,6 @@
-package LinkedListV2;
+package LinkedList;
 
-public class LinkedListV2<T> {
+public class LinkedList<T> {
 	
 	private Element<T> first;
 	

@@ -1,9 +1,9 @@
-import LinkedListV2.LinkedListV2;
+import LinkedList.LinkedList;
 
-public class V2Example {
+public class LinkedListExample {
 	
 	public static void main(String[] args) {
-		LinkedListV2<String> llv = new LinkedListV2();
+		LinkedList<String> llv = new LinkedList();
 		llv.addFirst("one");
 		llv.addLast("two");
 		llv.addLast("three");
