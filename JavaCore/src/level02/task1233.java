@@ -18,10 +18,17 @@ public class task1233 {
 			return new Pair<Integer,Integer>(null, null);
 		}
 		
-		int min = Arrays.stream(array).sorted().findFirst().getAsInt();
-		int index = (int) Arrays.stream(array).takeWhile(x -> x != min).count();
-
-		return new Pair<Integer,Integer>(min, index);
+		int min = array [0];
+		int index = 0;
+		for (int i=1;i<array.length;i++)
+			if (min > array [i]) {
+				min = array[i];
+				index = i;
+			}
+		
+		
+		
+		return new Pair<Integer, Integer>(min, index);
 	}
 	
 	

@@ -2,13 +2,13 @@ package level02;
 
 public class task1215 {
 	
-	public class Solution {
+	public static class Solution {
 		
 		public static void main(String[] args) {
 		
 		}
 		
-		public static abstract class Pet {
+		public abstract class Pet {
 			
 			public abstract String getName();
 			
@@ -16,7 +16,7 @@ public class task1215 {
 			
 		}
 		
-		public static class Cat extends Pet {
+		public class Cat extends Pet {
 			
 			public String getName() {
 				return "Tom";
@@ -29,7 +29,7 @@ public class task1215 {
 			
 		}
 		
-		public static class Dog extends Pet{
+		public class Dog extends Pet{
 			
 			@Override
 			public String getName() {

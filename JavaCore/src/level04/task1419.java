@@ -27,6 +27,6 @@ public class task1419 {
 		exceptions.add(new ArrayIndexOutOfBoundsException());
 		exceptions.add(new ArrayStoreException());
 		exceptions.add(new ClassCastException());
-		exceptions.add(new IllegalCallerException());
+		exceptions.add(new IllegalArgumentException());
 	}
 }
